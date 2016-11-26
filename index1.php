@@ -58,7 +58,7 @@
           <li>
             <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-user"></span>
+                <img src="" alt="" />
                 Mrs. Perry
                 <span class="caret"></span>
               </button>
@@ -71,62 +71,6 @@
       </div><!-- header-right -->
       
     </div><!-- headerbar -->
-    
-    <div class="pageheader">
-      <h2><i class="fa fa-home"></i> Dashboard <span>...</span></h2>
-      <div class="breadcrumb-wrapper">
-      </div>
-    </div>
-    
-    <div class="contentpanel">
-      
-      <div class="row">
-        
-        <div class="col-sm-6 col-md-3">
-          <div class="panel panel-success panel-stat">
-            <div class="panel-heading">
-              
-              <div class="stat">
-                <div class="row">
-                  <div class="col-xs-4">
-                    <img src="images/is-user.png" alt="" />
-                  </div>
-                  <div class="col-xs-8">
-                    <small class="stat-label">Total Students</small>
-                    <h1>2</h1>
-                  </div>
-                </div><!-- row -->
-                
-                <div class="mb15"></div>
-                
-                <div class="row">
-                  <div class="col-xs-6">
-                    <small class="stat-label">Pages / Visit</small>
-                    <h4>7.80</h4>
-                  </div>
-                  
-                  <div class="col-xs-6">
-                    <small class="stat-label">% New Visits</small>
-                    <h4>76.43%</h4>
-                  </div>
-                </div><!-- row -->
-              </div><!-- stat -->
-              
-            </div><!-- panel-heading -->
-          </div><!-- panel -->
-        </div><!-- col-sm-6 -->
-      </div><!-- row -->
-      
-
-
-      
-      <div class="row">
-      
-      </div><!-- row -->
-      
-    </div><!-- contentpanel -->
-    
-  </div><!-- mainpanel -->
  
 </section>
 
@@ -134,12 +78,59 @@
 <script src="js/jquery-1.10.2.min.js"></script>
 <script src="js/jquery-migrate-1.2.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.min.js"></script>
 <script src="js/jquery.sparkline.min.js"></script>
 <script src="js/toggles.min.js"></script>
 <script src="js/retina.min.js"></script>
 <script src="js/jquery.cookies.js"></script>
+
+<script src="js/jquery.datatables.min.js"></script>
+<script src="js/chosen.jquery.min.js"></script>
+
 <script src="js/custom.js"></script>
-<script src="js/dashboard.js"></script>
+<script>
+  jQuery(document).ready(function() {
+    
+    jQuery('#table1').dataTable();
+    
+    jQuery('#table2').dataTable({
+      "sPaginationType": "full_numbers"
+    });
+    
+    // Chosen Select
+    jQuery("select").chosen({
+      'min-width': '100px',
+      'white-space': 'nowrap',
+      disable_search_threshold: 10
+    });
+    
+    // Delete row in a table
+    jQuery('.delete-row').click(function(){
+      var c = confirm("Continue delete?");
+      if(c)
+        jQuery(this).closest('tr').fadeOut(function(){
+          jQuery(this).remove();
+        });
+        
+        return false;
+    });
+    
+    // Show aciton upon row hover
+    jQuery('.table-hidaction tbody tr').hover(function(){
+      jQuery(this).find('.table-action-hide a').animate({opacity: 1});
+    },function(){
+      jQuery(this).find('.table-action-hide a').animate({opacity: 0});
+    });
+  
+  
+  });
+</script>
+<style type="text/css">
+    @media print
+    {
+        .noprint {display: none;}
+    }
+</style>
 
 </body>
 </html>
